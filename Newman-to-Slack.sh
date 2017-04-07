@@ -277,9 +277,14 @@ main () {
     fi
 
     date=`date +%F\ %r`
+    
+    # collectionfilename
+    coll=${collection##*/}
+    # $coll=${$coll%.*}                                                                                                                                 
 
-    # post to slack
-    curl -X POST --data-urlencode 'payload={"text": "'"$date"':```'"$output"'```"}' $webhook
+    # post to slack                                                                                                                                     
+    curl -X POST --data-urlencode 'payload={"text": "'" $date "'"}' $webhook    # post date
+    curl -X POST --data-urlencode 'payload={"text": "'"$coll"':```'"$output"'```"}' $webhooook# post report
 }
 
 # initialize script
